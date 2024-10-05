@@ -23,7 +23,7 @@ app.use('/auth',require('./routes/auth.routes.js'))
 
 app.use("/api", indexRoutes);
 
-app.use('/api',require('./routes/author.routes.js'))
+app.use('/api',isAutheticated,require('./routes/author.routes.js'))
 
 app.use('/',isAutheticated,require('./routes/books.routes.js'))
 

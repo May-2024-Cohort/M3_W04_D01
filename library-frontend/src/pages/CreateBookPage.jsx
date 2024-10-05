@@ -15,13 +15,17 @@ function CreateBookPage() {
 
     const [allAuthors,setAllAuthors] = useState([])
     const [allGenres,setAllGenres] = useState([])
+    const token = localStorage.getItem("token")
+
 
     const navigate = useNavigate()
 
     function handleSubmit(e){
         e.preventDefault()
 
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/books`,{title,author,genre,pageNumbers})
+        const token = localStorage.getItem("token")
+
+        axios.post(`${import.meta.env.VITE_BACKEND_URL}/books`,{title,author,genre,pageNumbers},{headers:{Authorization:`Bearer ${token}`}})
         .then((createdBook)=>{
             console.log(createdBook)
             navigate('/books')
@@ -33,12 +37,12 @@ function CreateBookPage() {
 
     useEffect(()=>{
 
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/authors`)
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/authors`,{headers:{Authorization:`Bearer ${token}`}})
         .then((fetchedAuthors)=>{
             setAllAuthors(fetchedAuthors.data)
         })
 
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/genres`)
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/genres`,{headers:{Authorization:`Bearer ${token}`}})
         .then((fetchedGenres)=>{
             setAllGenres(fetchedGenres.data)
         })
