@@ -141,6 +141,9 @@ router.post('/login',(req,res)=>{
 })
 
 
+// 1. gets the token and checks if its valid
+
+// 2. returns to me the content/payload of the token
 
 router.get('/verify',isAutheticated,(req,res)=>{
 

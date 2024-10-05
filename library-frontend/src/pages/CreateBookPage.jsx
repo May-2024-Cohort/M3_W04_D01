@@ -1,9 +1,13 @@
-import {useEffect, useState} from 'react'
+import {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '../context/auth.context'
 
 function CreateBookPage() {
 
+    const theValueFromContext = useContext(AuthContext)
+
+    console.log(theValueFromContext)
     const [title,setTitle] = useState('')
     const [author,setAuthor] = useState(null)
     const [genre,setGenre] = useState('')
@@ -43,6 +47,7 @@ function CreateBookPage() {
     <div>
       
       <form onSubmit={handleSubmit}>
+
 
         <label>
             Title:

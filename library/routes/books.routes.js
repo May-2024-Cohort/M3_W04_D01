@@ -10,7 +10,7 @@ const {isAutheticated} = require('../middleware/jwt.middleware')
 
 // CRUD
 
-router.get('/books',isAutheticated,(req,res)=>{
+router.get('/books',(req,res)=>{
 
     Book.find()
     .populate('author genre')
