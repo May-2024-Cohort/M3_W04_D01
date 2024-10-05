@@ -17,7 +17,8 @@ function AllBooksPage() {
 
     useEffect(()=>{
 
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/books`)
+      const token = localStorage.getItem("token")
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/books`,{headers:{Authorization:`Bearer ${token}`}})
         .then((allBooks)=>{
             console.log(allBooks.data)
             setBooks(allBooks.data)

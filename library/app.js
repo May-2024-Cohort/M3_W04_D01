@@ -25,7 +25,7 @@ app.use("/api", indexRoutes);
 
 app.use('/api',require('./routes/author.routes.js'))
 
-app.use('/',require('./routes/books.routes.js'))
+app.use('/',isAutheticated,require('./routes/books.routes.js'))
 
 app.use('/',require('./routes/genres.routes.js'))
 
