@@ -2,6 +2,7 @@ import {useEffect, useState, useContext} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
+import bookService from '../services/books.service'
 
 function CreateBookPage() {
 
@@ -25,7 +26,7 @@ function CreateBookPage() {
 
         const token = localStorage.getItem("token")
 
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/books`,{title,author,genre,pageNumbers},{headers:{Authorization:`Bearer ${token}`}})
+        bookService.createBook({title,author,genre,pageNumbers})
         .then((createdBook)=>{
             console.log(createdBook)
             navigate('/books')

@@ -1,6 +1,9 @@
 import {useState,useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import authService from '../services/auth.service'
+
+
 
 function SignupPage() {
 
@@ -15,7 +18,9 @@ function SignupPage() {
 
         let newUser = {email,password,name}
 
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup`,newUser)
+        // axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/signup`,newUser)
+        
+        authService.signup(newUser)
         .then((createdUser)=>{
            navigate('/login')
         })

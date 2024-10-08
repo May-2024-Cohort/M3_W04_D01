@@ -2,14 +2,15 @@ import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
+import bookService from '../services/books.service'
 
 function AllBooksPage() {
 
 
-  const value = useContext(AuthContext)
 
-  console.log(value)
 
+  const {loggedInUser} = useContext(AuthContext)
+  console.log(loggedInUser._id)
 
 
     const [books,setBooks] = useState([])
@@ -17,9 +18,8 @@ function AllBooksPage() {
 
     useEffect(()=>{
 
-      const token = localStorage.getItem('token')
 
-        axios.get(`${import.meta.env.VITE_BACKEND_URL}/books`,{headers:{Authorization:`Bearer ${token}`}})
+        bookService.getBookForAuthor(loggedInUser._id)
         .then((allBooks)=>{
             console.log(allBooks.data)
             setBooks(allBooks.data)

@@ -4,6 +4,7 @@
 import { createContext, useEffect, useState } from "react";
 import AllBooksPage from "../pages/AllBooksPage";
 import axios from "axios";
+import authService from "../services/auth.service";
 
 
 const AuthContext = createContext()
@@ -26,9 +27,7 @@ function AuthContextProvider(props){
         // 2. send the token to the verify route
 
         if(token){
-            axios.get(`${import.meta.env.VITE_BACKEND_URL}/auth/verify`,
-                {headers:{Authorization:`Bearer ${token}`}}
-            )
+            authService.verify()
             .then((userInformation)=>{
             // 3. save the information in the context
 

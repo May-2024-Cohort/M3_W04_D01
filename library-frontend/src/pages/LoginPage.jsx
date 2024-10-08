@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/auth.context'
+import authService from '../services/auth.service'
 
 
 function LoginPage() {
@@ -17,7 +18,7 @@ function LoginPage() {
 
         let loginInformation = {email,password}
 
-        axios.post(`${import.meta.env.VITE_BACKEND_URL}/auth/login`,loginInformation)
+        authService.login(loginInformation)
         .then((token)=>{
             console.log(token.data)
             localStorage.setItem("token",token.data.authToken)
