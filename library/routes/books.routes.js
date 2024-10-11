@@ -22,6 +22,18 @@ router.get('/books',(req,res)=>{
     })
 })
 
+router.get('/books/author/:id',(req,res)=>{
+
+    Book.find({author:req.params.id})
+    .populate('genre author')
+    .then((books)=>{
+        res.json(books)
+    })
+    .catch(()=>{
+
+    })
+})
+
 
 router.get('/books/:id',(req,res)=>{
 

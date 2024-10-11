@@ -54,6 +54,7 @@ router.post('/signup', (req, res) => {
 
     User.create({ name, email, password: encryptedPassword })
         .then((createdUser) => {
+            delete createdUser.password
             res.status(201).json(createdUser)
         })
         .catch((err) => {

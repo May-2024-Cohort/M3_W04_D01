@@ -24,8 +24,6 @@ function CreateBookPage() {
     function handleSubmit(e){
         e.preventDefault()
 
-        const token = localStorage.getItem("token")
-
         bookService.createBook({title,author,genre,pageNumbers})
         .then((createdBook)=>{
             console.log(createdBook)
